@@ -108,26 +108,25 @@ def convert_xlsx_to_pdf_via_libreoffice(source_path: str, output_pdf_path: str):
     finally:
         shutil.rmtree(temp_dir)
 
-# 將xls轉成xlsx
+# 測試時取消註解
+# # 將xls轉成xlsx
 # convert_xls_to_xlsx_via_libreoffice("DemoChartZJPGMerge100檔案.xls", "temp.xlsx")
 # # 格式修正
 # normalize_excel_format("temp.xlsx")
 # # 執行範例
 # convert_xlsx_to_pdf_via_libreoffice("temp.xlsx", "output.pdf")
 
+# 給API呼叫時取消註解
 if __name__ == "__main__":
     import sys
     if len(sys.argv) != 3:
         print("請提供參數：<輸入 xls 路徑> <輸出 pdf 路徑>")
         sys.exit(1)
-
     input_xls = sys.argv[1]
     output_pdf = sys.argv[2]
-
     # 中繼轉成 .xlsx
     temp_xlsx = os.path.join(tempfile.gettempdir(
     ), "converted_" + os.path.basename(input_xls).replace(".xls", ".xlsx"))
-
     convert_xls_to_xlsx_via_libreoffice(input_xls, temp_xlsx)
     normalize_excel_format(temp_xlsx)
     convert_xlsx_to_pdf_via_libreoffice(temp_xlsx, output_pdf)
